@@ -19,7 +19,7 @@ display.setDefault("background", 0, 0, 0)
 -- to remove status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- draw the triangle that is half the width and half the height og the screen size.
+-- draw the triangle that is half the width and half the height of the screen size.
 myTriangle = display.newPolygon(500, 500, verticesTriangle)
 
 -- anchor the triangle in the top left corner of the screen and set its (x,y) position
@@ -44,5 +44,27 @@ areaText = display.newText("Triangle", 0,0, Arial, textSize)
 -- anchor the text and set its (x,y) position
 areaText.anchorX = 0
 areaText.anchorY = 0
-areaText.x = 150
-areaText = display.content/1.5
+areaText.x = 415
+areaText.y = 515
+areaText = display.contentHeight/2
+
+-- write the area on the screen.
+areaText = display.newText("The area of this triangle with a base of \n" ..
+	baseOfTriangle .. " and a height of " .. heightOfTriangle .. " is " ..
+	areaOfTriangle .. "pixels²." , 0, 0, Arial, textSize)
+
+-- anchor the text and set its (x,y) position
+areaText.anchorX = 0
+areaText.anchorY = 0
+areaText.x = 90
+areaText.y = 600
+areaText.y = display.contentHeight/1.3
+
+-- create my local variables
+local areaText
+local textSize = 50
+local myParallel
+local verticesParallel = { -25, -50, -25, 25, 35, 50, 35, -35}
+
+-- draw the parallelogram that is half the width and half the height of the screen size.
+myParallel = display.newPolygon(500, 500, verticesParallel)
