@@ -22,7 +22,7 @@ display.setStatusBar(display.HiddenStatusBar)
 -- draw the triangle that is half the width and half the height of the screen size.
 myTriangle = display.newPolygon(500, 500, verticesTriangle)
 
--- anchor the triangle in the top left corner of the screen and set its (x,y) position
+-- anchor the triangle in the middle corner of the screen and set its (x,y) position
 myTriangle.anchorX = 0.5
 myTriangle.anchorY = 100
 
@@ -68,3 +68,59 @@ local verticesParallel = { -25, -50, -25, 25, 35, 50, 35, -35}
 
 -- draw the parallelogram that is half the width and half the height of the screen size.
 myParallel = display.newPolygon(500, 500, verticesParallel)
+
+-- anchor the parallelogram in the left of the screen and set its (x,y) position
+myParallel.anchorX = 0.5
+myParallel.anchorY = 100
+
+-- set the width of the border
+myParallel.strokeWidth = 20
+
+-- set the color of the parallelogram
+myParallel:setFillColor(0/255, 0/255, 102/255)
+
+-- set the color of border
+myParallel:setStrokeColor(51/255, 153/255, 255/255)
+
+-- write the name of shape on the screen. 
+areaText = display.newText("Parallelogram", 0,0, Arial, textSize)
+
+-- anchor the text and set its (x,y) position
+areaText.anchorX = 0
+areaText.anchorY = 0
+areaText.x = 400
+areaText.y = 500
+areaText = display.contentHeight/2
+
+-----------------------------------------------------------
+-- create my local variables
+local areaText
+local textSize = 50
+local myPentagon
+local verticesPentagon = { -25, -50, -25, 25, 35, 50, 35, -35, 30, 30}
+
+-- draw the pentagon that is half the width and half the height of the screen size.
+myPentagon = display.newPolygon(500, 500, verticesPentagon)
+
+-- anchor the pentagon in the right of the screen and set its (x,y) position
+myParallel.anchorX = 0.5
+myParallel.anchorY = 100
+
+-- set the width of the border
+myPentagon.strokeWidth = 20
+
+-- set the color of the pentagon
+myParallel:setFillColor(76/255, 0/255, 153/255)
+
+-- set the color of border
+myParallel:setStrokeColor(178/255, 102/255, 255/255)
+
+-- write the name of shape on the screen. 
+areaText = display.newText("Pentagon", 0,0, Arial, textSize)
+
+-- anchor the text and set its (x,y) position
+areaText.anchorX = 0
+areaText.anchorY = 0
+areaText.x = 430
+areaText.y = 530
+areaText = display.contentHeight/2
