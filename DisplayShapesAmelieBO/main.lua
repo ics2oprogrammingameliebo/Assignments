@@ -13,8 +13,8 @@ local heightOfTriangle = 200
 local areaOfTriangle
 local verticesTriangle = {  0, -50, -50, 25, 50, 25,}
 
--- set the background color of my screen.Remeber that colors are between 0 and 1.
-display.setDefault("background", 0, 0, 0)
+-- set background image and width and height
+local backgroundImage = display.newImageRect("Images/color.jpg", 2048, 1536)
 
 -- to remove status bar
 display.setStatusBar(display.HiddenStatusBar)
@@ -67,7 +67,7 @@ local myParallel
 local verticesParallel = { -25, -50, -25, 25, 35, 50, 35, -35}
 
 -- draw the parallelogram that is half the width and half the height of the screen size.
-myParallel = display.newPolygon(500, 500, verticesParallel)
+myParallel = display.newPolygon(810, 400, verticesParallel)
 
 -- anchor the parallelogram in the left of the screen and set its (x,y) position
 myParallel.anchorX = 0.5
@@ -88,39 +88,43 @@ areaText = display.newText("Parallelogram", 0,0, Arial, textSize)
 -- anchor the text and set its (x,y) position
 areaText.anchorX = 0
 areaText.anchorY = 0
-areaText.x = 400
-areaText.y = 500
+areaText.x = 680
+areaText.y = 200
 areaText = display.contentHeight/2
 
 -----------------------------------------------------------
 -- create my local variables
 local areaText
 local textSize = 50
-local myPentagon
-local verticesPentagon = { -25, -50, -25, 25, 35, 50, 35, -35, 30, 30}
+local myHexagon
+local verticesHexagon = { -25, -50, -25, 25, 35, 50, 35, -35, 30, 30}
 
--- draw the pentagon that is half the width and half the height of the screen size.
-myPentagon = display.newPolygon(500, 500, verticesPentagon)
+-- draw the Hexagon that is half the width and half the height of the screen size.
+myHexagon = display.newPolygon(200, 400, verticesHexagon)
 
--- anchor the pentagon in the right of the screen and set its (x,y) position
-myParallel.anchorX = 0.5
-myParallel.anchorY = 100
+-- anchor the hexagon in the right of the screen and set its (x,y) position
+myHexagon.anchorX = 0.5
+myHexagon.anchorY = 100
 
 -- set the width of the border
-myPentagon.strokeWidth = 20
+myHexagon.strokeWidth = 20
 
--- set the color of the pentagon
-myParallel:setFillColor(76/255, 0/255, 153/255)
+-- set the color of the hexagon
+myHexagon:setFillColor(76/255, 0/255, 153/255)
 
 -- set the color of border
-myParallel:setStrokeColor(178/255, 102/255, 255/255)
+myHexagon:setStrokeColor(178/255, 102/255, 255/255)
 
 -- write the name of shape on the screen. 
-areaText = display.newText("Pentagon", 0,0, Arial, textSize)
+areaText = display.newText("Hexagon", 0,0, Arial, textSize)
+
+-- set the color of the newText
+areaText:setTextColor(204/255, 204/255, 255/255)
 
 -- anchor the text and set its (x,y) position
 areaText.anchorX = 0
 areaText.anchorY = 0
-areaText.x = 430
-areaText.y = 530
+areaText.x = 80
+areaText.y = 200
 areaText = display.contentHeight/2
+
