@@ -41,6 +41,9 @@ areaOfTriangle = heightOfTriangle * baseOfTriangle/2
 -- write the name of shape on the screen. 
 areaText = display.newText("Triangle", 0,0, Arial, textSize)
 
+-- set the color of the newText
+areaText:setTextColor(51/255, 255/255, 51/255)
+
 -- anchor the text and set its (x,y) position
 areaText.anchorX = 0
 areaText.anchorY = 0
@@ -52,6 +55,9 @@ areaText = display.contentHeight/2
 areaText = display.newText("The area of this triangle with a base of \n" ..
 	baseOfTriangle .. " and a height of " .. heightOfTriangle .. " is " ..
 	areaOfTriangle .. "pixels²." , 0, 0, Arial, textSize)
+
+-- set the color of the newText
+areaText:setTextColor(51/255, 255/255, 51/255)
 
 -- anchor the text and set its (x,y) position
 areaText.anchorX = 0
@@ -84,6 +90,9 @@ myParallel:setStrokeColor(51/255, 153/255, 255/255)
 
 -- write the name of shape on the screen. 
 areaText = display.newText("Parallelogram", 0,0, Arial, textSize)
+
+-- set the color of the newText
+areaText:setTextColor(51/255, 153/255, 255/255)
 
 -- anchor the text and set its (x,y) position
 areaText.anchorX = 0
@@ -119,7 +128,7 @@ myHexagon:setStrokeColor(178/255, 102/255, 255/255)
 areaText = display.newText("Hexagon", 0,0, Arial, textSize)
 
 -- set the color of the newText
-areaText:setTextColor(204/255, 204/255, 255/255)
+areaText:setTextColor(178/255, 102/255, 255/255)
 
 -- anchor the text and set its (x,y) position
 areaText.anchorX = 0
@@ -127,4 +136,3 @@ areaText.anchorY = 0
 areaText.x = 80
 areaText.y = 200
 areaText = display.contentHeight/2
-
