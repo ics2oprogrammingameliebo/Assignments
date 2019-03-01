@@ -32,6 +32,9 @@ local function MoveRedFish(event)
 	redfish.x = redfish.x + scrollSpeed
 	-- change the transparency everytime it move so it fades out
 	redfish.alpha = redfish.alpha + 0.01
+	angle = math.rad(30)
+redfish.x = redfish.x - math.sin (40)
+redfish.y = redfish.y + math.cos(50)
 end
 
 -- MoveredFish will be called over and over again
