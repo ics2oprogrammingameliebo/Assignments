@@ -16,6 +16,10 @@ local backgroundImage = display.newImageRect("Images/ocean.jpg", 2048, 1536)
 local redfish = display.newImageRect("Images/redfish.png", 200, 200)
 local jelly = display.newImageRect("Images/jelly.png", 200, 200)
 
+
+-- Flip the image vertically and horizontally
+jelly:scale( -1, -1 )
+
 -- set the image to be transparent
 redfish.alpha = 0
 
@@ -43,7 +47,6 @@ jelly.alpha = 0
 -- set the initial x and y position of the images
 jelly.x = 0
 jelly.y = 300
-
 
 -- Function: Move MoveJelly
 -- Input: this function accepts an event listener
