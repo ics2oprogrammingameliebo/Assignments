@@ -7,7 +7,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- global variables
-scrollSpeed = 4
+scrollSpeed = 3
 
 -- background image with the width and height
 local backgroundImage = display.newImageRect("Images/ocean.jpg", 2048, 1536)
@@ -52,7 +52,7 @@ local function MoveRedFish(event)
 	redfish.alpha = redfish.alpha + 0.01
 	angle = math.rad(30)
 redfish.x = redfish.x - math.sin (40)
-redfish.y = redfish.y + math.cos(50)
+redfish.y = redfish.y +  math.cos(50)
 end
 
 -- MoveredFish will be called over and over again
@@ -69,17 +69,18 @@ jelly.y = 900
 -- Description This funtion adds the scroll speed to the x-value of the ship
 local function MoveJelly(event)
 	-- add the scroll speed to the x-value of the ship
-	jelly.y = jelly.y - scrollSpeed
+	jelly.y = jelly.y - scrollSpeed 
 end
 
 -- MoverJelly will be called over and over again
 Runtime:addEventListener("enterFrame", MoveJelly)
+
 -------------------------------------------------
--- set the image to be visible
+-- set the image to be transparent
 sea.alpha = 0
 
 -- set the initial x and y position of the images
-sea.x = 900
+sea.x = 1100
 sea.y = 500
 
 -- Function: Move MoveSea
