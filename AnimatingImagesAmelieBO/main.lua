@@ -21,7 +21,7 @@ local areaText
 local textSize = 90
 
 -- display text on the screen.
-areaText = display.newText("Under the sea", 0,0, Consolas, textSize)
+areaText = display.newText("Under the Sea", 0,0, Arial, textSize)
 
 -- set the color of the newText
 areaText:setTextColor(255/255, 255/255, 255/255)
