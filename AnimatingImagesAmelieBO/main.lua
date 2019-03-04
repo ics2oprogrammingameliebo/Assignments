@@ -15,7 +15,7 @@ local backgroundImage = display.newImageRect("Images/ocean.jpg", 2048, 1536)
 -- characters image with the width and height
 local redfish = display.newImageRect("Images/redfish.png", 200, 200)
 local jelly = display.newImageRect("Images/jelly.png", 200, 200)
-local sea = display.newImageRect("Images/Sea.png", 200, 200)
+local sea = display.newImageRect("Images/Sea.png", 200, 200 )
 
 local areaText
 local textSize = 90
