@@ -16,7 +16,6 @@ local backgroundImage = display.newImageRect("Images/ocean.jpg", 2048, 1536)
 local redfish = display.newImageRect("Images/redfish.png", 200, 200)
 local jelly = display.newImageRect("Images/jelly.png", 200, 200)
 local sea = display.newImageRect("Images/Sea.png", 200, 200)
-local stingray = display.newImageRect("Images/stingray.png", 215, 215)
 
 local areaText
 local textSize = 90
@@ -74,6 +73,7 @@ local function MoveJelly(event)
 	jelly.y = jelly.y - scrollSpeed 
 	-- Scale the image by 100% (x) and 100% (y)
    jelly:scale( 1.002, 1.002 )
+
 end
 
 -- MoverJelly will be called over and over again
@@ -100,3 +100,43 @@ end
 -- MoveSea will be called over and over again
 Runtime:addEventListener("enterFrame", MoveSea)
 -----------------------------------------------------------
+local stingray = display.newImageRect("Images/stingray.png", 215, 215)
+local stingrayWidth = stingray.width
+local stingrayHeight = stingray.height
+
+-- boolean variables to keep track of which object I touched first
+local alreadyTouchedstingray = false
+local areadyTouchedredfish = false
+local alreadyTouchedjelly = false
+local alreadyTouchedsea = false
+
+-- set the initial x and y position of myImage
+stingray.x = 150
+stingray.y = 650
+
+-- Function: StingrayListener
+-- Input: touch listener
+-- Output: none
+-- Description: when stingray is touched, move her
+local function StingrayListener(touch)
+
+	if (touch.phase == "began") then
+		if (alreadyTouchedredfish == false) and (alreadyTouchedjelly == false) and (alreadyTouchedsea == false) then
+			alreadyTouchedstingray = true
+		end
+	end
+
+	if ( (touch.phase == "moved") and (alreadyTouchedstingray == true) ) then
+		stingray.x = touch.x
+		stingray.y = touch.y
+	end
+
+	if (touch.phase == "ended") then
+	alreadyTouchedredfish = false
+	alreadyTouchedjelly = false
+	alreadyTouchedsea = false
+	end
+end
+
+-- add the respective listener to each object
+stingray:addEventListener("touch", StingrayListener)
