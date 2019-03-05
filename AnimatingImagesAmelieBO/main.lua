@@ -15,7 +15,8 @@ local backgroundImage = display.newImageRect("Images/ocean.jpg", 2048, 1536)
 -- characters image with the width and height
 local redfish = display.newImageRect("Images/redfish.png", 200, 200)
 local jelly = display.newImageRect("Images/jelly.png", 200, 200)
-local sea = display.newImageRect("Images/Sea.png", 200, 200 )
+local sea = display.newImageRect("Images/Sea.png", 200, 200)
+local stingray = display.newImageRect("Images/stingray.png", 215, 215)
 
 local areaText
 local textSize = 90
@@ -26,12 +27,12 @@ areaText = display.newText("Under the Sea", 0,0, Arial, textSize)
 -- set the color of the newText
 areaText:setTextColor(255/255, 255/255, 255/255)
 
--- anchor the text and set its (x.y) position
+-- anchor the text and set its (x,y) position
 areaText.anchorX = 0
 areaText.anchorY = 0
 areaText.x = 220
 areaText.y = 20
-areaText = display.contentHeight/2
+areaText = display.contentHeight/2 
 
 --------------------------------------------------------------
 -- set the image to be visible
@@ -50,14 +51,15 @@ local function MoveRedFish(event)
 	redfish.x = redfish.x + scrollSpeed
 	-- change the transparency everytime it move so it fades out
 	redfish.alpha = redfish.alpha + 0.01
+	-- make image move diagonally
 	angle = math.rad(30)
-redfish.x = redfish.x - math.sin (40)
-redfish.y = redfish.y +  math.cos(50)
+	redfish.x = redfish.x - math.sin (40)
+	redfish.y = redfish.y +  math.cos(50)
 end
 
 -- MoveredFish will be called over and over again
 Runtime:addEventListener("enterFrame", MoveRedFish)
-----------------------------------------------------
+----------------------------------------------------------------
 
 -- set the initial x and y position of the images
 jelly.x = 500
@@ -70,12 +72,13 @@ jelly.y = 900
 local function MoveJelly(event)
 	-- add the scroll speed to the x-value of the ship
 	jelly.y = jelly.y - scrollSpeed 
+	-- Scale the image by 100% (x) and 100% (y)
+   jelly:scale( 1.002, 1.002 )
 end
 
 -- MoverJelly will be called over and over again
 Runtime:addEventListener("enterFrame", MoveJelly)
-
--------------------------------------------------
+----------------------------------------------------------------
 -- set the image to be transparent
 sea.alpha = 0
 
@@ -96,3 +99,4 @@ end
 
 -- MoveSea will be called over and over again
 Runtime:addEventListener("enterFrame", MoveSea)
+-----------------------------------------------------------
