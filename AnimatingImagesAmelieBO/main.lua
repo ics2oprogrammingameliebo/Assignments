@@ -15,10 +15,10 @@ local backgroundImage = display.newImageRect("Images/ocean.jpg", 2048, 1536)
 -- characters image with the width and height
 local redfish = display.newImageRect("Images/redfish.png", 200, 200)
 local jelly = display.newImageRect("Images/jelly.png", 200, 200)
-local sea = display.newImageRect("Images/Sea.png", 200, 200)
 
 local areaText
 local textSize = 90
+local TextSize = 50
 
 -- display text on the screen.
 areaText = display.newText("Under the Sea", 0,0, Arial, textSize)
@@ -33,6 +33,32 @@ areaText.x = 220
 areaText.y = 20
 areaText = display.contentHeight/2 
 
+
+-- display text on the screen.
+areaText = display.newText("Click and drag the stingray", 0,0, Arial, TextSize)
+
+-- set the color of the newText
+areaText:setTextColor(255/255, 255/255, 255/255)
+
+-- anchor the text and set its (x,y) position
+areaText.anchorX = 0
+areaText.anchorY = 0
+areaText.x = 300
+areaText.y = 650
+areaText = display.contentHeight/2 
+---------------------------------------------------
+-- display text on the screen.
+areaText = display.newText(" to move it around.", 0,0, Arial, TextSize)
+
+-- set the color of the newText
+areaText:setTextColor(255/255, 255/255, 255/255)
+
+-- anchor the text and set its (x,y) position
+areaText.anchorX = 0
+areaText.anchorY = 0
+areaText.x = 400
+areaText.y = 700
+areaText = display.contentHeight/2 
 --------------------------------------------------------------
 -- set the image to be visible
 redfish.alpha = 1
@@ -77,7 +103,22 @@ end
 
 -- MoverJelly will be called over and over again
 Runtime:addEventListener("enterFrame", MoveJelly)
-----------------------------------------------------------------
+-----------------------------------------
+
+local sea = display.newImageRect("Images/Sea.png", 200, 200)
+local SPEED = 1
+
+local function move(event)
+
+    sea.x = sea.x + math.cos(math.rad(sea.rotation)) * SPEED
+    sea.y = sea.y + math.sin(math.rad(sea.rotation)) * SPEED
+end
+
+local function rotate(event)
+    sea.rotation = sea.rotation + 2
+end
+
+Runtime:addEventListener("enterFrame", rotate)
 -- set the image to be transparent
 sea.alpha = 0
 
@@ -98,6 +139,8 @@ end
 
 -- MoveSea will be called over and over again
 Runtime:addEventListener("enterFrame", MoveSea)
+
+
 -----------------------------------------------------------
 local stingray = display.newImageRect("Images/stingray.png", 215, 215)
 local stingrayWidth = stingray.width
