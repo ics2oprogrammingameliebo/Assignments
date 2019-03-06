@@ -7,14 +7,14 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- global variables
-scrollSpeed = 3
+scrollSpeed = 2
 
 -- background image with the width and height
 local backgroundImage = display.newImageRect("Images/ocean.jpg", 2048, 1536)
 
 -- characters image with the width and height
 local redfish = display.newImageRect("Images/redfish.png", 200, 200)
-local jelly = display.newImageRect("Images/jelly.png", 200, 200)
+local jelly = display.newImageRect("Images/jelly.png", 100, 100)
 
 local areaText
 local textSize = 90
