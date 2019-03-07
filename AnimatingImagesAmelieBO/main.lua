@@ -97,7 +97,7 @@ jelly.y = 900
 local function MoveJelly(event)
 	-- add the scroll speed to the x-value of the ship
 	jelly.y = jelly.y - scrollSpeed 
-	-- Scale the image by 100% (x) and 100% (y)
+	-- Scale the image by 100.2% (x) and 100.2% (y)
    jelly:scale( 1.002, 1.002)
 end
 
