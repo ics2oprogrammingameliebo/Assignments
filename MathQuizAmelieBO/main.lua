@@ -15,7 +15,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
  -- set the background color
- display.setDefault("background", 76/255, 0/255, 153/255)
+ display.setDefault("background", 153/255, 0/255, 153/255)
 
  -------------------------------------------------------------------------
  -- LOCAL VARIABLES
@@ -129,12 +129,12 @@ display.setStatusBar(display.HiddenStatusBar)
 questionObject:setTextColor(255/255, 255/255, 0/255)
 
 -- create the correct text object and make it invisible
-correctObject = display.newText( "Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 60 )
+correctObject = display.newText( "Awesome! You got it right!", display.contentWidth/2, display.contentHeight*2/3, nil, 60 )
 correctObject:setTextColor(51/255, 255/255, 255/255)
 correctObject.isVisible = false
 
 -- create the correct text object and make it invisible
-incorrectObject = display.newText( "Incorrect", display.contentWidth/2, display.contentHeight*2/3, nil, 60 )
+incorrectObject = display.newText( "Sorry, that is incorrect", display.contentWidth/2, display.contentHeight*2/3, nil, 60 )
 incorrectObject:setTextColor(255/255, 51/255, 153/255)
 incorrectObject.isVisible = false
 
