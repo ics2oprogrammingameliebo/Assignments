@@ -15,7 +15,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
  -- set the background color
- display.setDefault("background", 153/255, 0/255, 153/255)
+ display.setDefault("background", 230/255, 251/255, 255/255)
 
  -------------------------------------------------------------------------
  -- LOCAL VARIABLES
@@ -40,10 +40,16 @@ display.setStatusBar(display.HiddenStatusBar)
  	-- generate a random number between 1 and 2
  	-- ** MAKE SURE TO DECLARE THIS VARIABLE ABOVE
     randomOperator = math.random(1,4)
+    round1 = math.floor(0.5<)
+    round2 = math.ceil(0.5>)
 
     -- generate 2 random numbers
- 	randomNumber1 = math.random(0, 4)
- 	randomNumber2 = math.random(0, 4)
+ 	randomNumber1 = math.random(1, 20)
+ 	randomNumber2 = math.random(1, 20)
+    randomNumber3 = math.random(1, 10)
+    randomNumber4 = math.random(1, 10)
+    randomNumber5 = math.random(1, 100) 
+    randomNumber6 = math.random(1, 100)
 
  	-- if the random operator is 1, the do addition
  	if (randomOperator == 1) then
@@ -65,18 +71,18 @@ display.setStatusBar(display.HiddenStatusBar)
      -- otherwise, if the random operator is 3, do multiply
     elseif (randomOperator == 3) then
     	--calculate the correct answer
-    	correctAnswer = randomNumber1 * randomNumber2
+    	correctAnswer = randomNumber3 * randomNumber4
 
     	-- create question in text field
-    	questionObject.text = randomNumber1 .. " × " .. randomNumber2 .. " = "
+    	questionObject.text = randomNumber3 .. " × " .. randomNumber4 .. " = "
 
     	-- otherwise, if the random operator is 4, do divide
     elseif (randomOperator == 4) then
     	--calculate the correct answer
-    	correctAnswer = randomNumber1 / randomNumber2
+    	correctAnswer = randomNumber5 / randomNumber6
 
     	-- create question in text field
-    	questionObject.text = randomNumber1 .. " ÷ " .. randomNumber2 .. " = "
+    	questionObject.text = randomNumber5 .. " ÷ " .. randomNumber6 .. " = "
     end
  end
 
@@ -126,16 +132,16 @@ display.setStatusBar(display.HiddenStatusBar)
 
  -- display a question and set the color
  questionObject = display.newText ( " ", display.contentWidth/3.5, display.contentHeight/2, nil, 60 )
-questionObject:setTextColor(255/255, 255/255, 0/255)
+questionObject:setTextColor(0/255, 3/255, 128/255)
 
 -- create the correct text object and make it invisible
 correctObject = display.newText( "Awesome! You got it right!", display.contentWidth/2, display.contentHeight*2/3, nil, 60 )
-correctObject:setTextColor(51/255, 255/255, 255/255)
+correctObject:setTextColor(30/255, 179/255, 0/255)
 correctObject.isVisible = false
 
 -- create the correct text object and make it invisible
 incorrectObject = display.newText( "Sorry, that is incorrect", display.contentWidth/2, display.contentHeight*2/3, nil, 60 )
-incorrectObject:setTextColor(255/255, 51/255, 153/255)
+incorrectObject:setTextColor(204/255, 0/255, 43/255)
 incorrectObject.isVisible = false
 
 -- Create numeric field
