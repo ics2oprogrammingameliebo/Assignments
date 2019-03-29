@@ -256,6 +256,10 @@ numberText:setTextColor(51/255, 255/255, 255/255)
 
 numberText = display.newText ( "" .. numberCorrect + 1, display.contentWidth/1.67, display.contentHeight/3, nil, 50 )
 numberText:setTextColor(51/255, 255/255, 255/255)
+
+incorrectObject = display.newText( "The correct answer is " .. correctAnswer , display.contentWidth/2, display.contentHeight*2/3, nil, 60 )
+incorrectObject:setTextColor(204/255, 0/255, 43/255)
+incorrectObject.isVisible = false
 ------------------------------------------------------------------------
 -- FUNCTION CALLS
 -----------------------------------------------------------------------
