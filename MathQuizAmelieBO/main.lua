@@ -63,6 +63,11 @@ local function UpdateTime()
        -- reset the number of seconds left
        secondsLeft = totalSeconds
        lives = lives - 1
+
+    elseif (secondsLeft == 0) then
+       -- reset the number of seconds left
+       correctAnswer = totalSeconds
+       lives = lives - 1
        end
 
 
@@ -76,7 +81,7 @@ local function UpdateTime()
         elseif (lives == 1) then
             heart1.isVisible = false
          elseif (lives == 0) then
-            timer.cancel(countDownTimer)
+            timer.cancel(countDownTimer) and 
         end
         -- *** CALL THE FUNCTION TO ASK A NEW QUESTION
     end
