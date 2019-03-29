@@ -81,7 +81,7 @@ local function UpdateTime()
         elseif (lives == 1) then
             heart1.isVisible = false
          elseif (lives == 0) then
-            timer.cancel(countDownTimer) and 
+            timer.cancel(countDownTimer) 
         end
         -- *** CALL THE FUNCTION TO ASK A NEW QUESTION
     end
