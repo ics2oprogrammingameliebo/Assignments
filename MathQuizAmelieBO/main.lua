@@ -20,6 +20,7 @@ display.setDefault("background", 0/255, 0/255, 51/255)
  local questionObject
  local correctObject
  local incorrectObject
+ local incorrectObject2
  local NumericTextFields
  local randomNumber1
  local randomNumber2
@@ -41,7 +42,12 @@ local lives = 3
 local heart1
 local heart2
 local heart3
+local gameOver
 local numberText
+----------------------------
+ -- game over sound
+ local gameOverSound = audio.loadSound( "Sounds/SpringSoundEffect.mp3")
+ local gameOverSoundChannel
 --------------------------------------------------------------------
 -- LOCAL FUNCTION
 ---------------------------------------------------------------------
@@ -75,12 +81,17 @@ local function UpdateTime()
         -- SHOW A YOU LOOSE IMAGE AND CANCEL THE TIMER, REMOVE THE
         -- THIRD HEART BY MAKING IT INVISIBLE
         if (lives == 3) then
-            heart3.isVisible = false
+            heart3.isVisible = true
+            gameOver.isVisible = false
         elseif (lives == 2) then
-            heart2.isVisible = false
+            heart3.isVisible = false
         elseif (lives == 1) then
-            heart1.isVisible = false
+            heart2.isVisible = false
          elseif (lives == 0) then
+            heart1.isVisible = false
+            gameOver.isVisible = true
+            gameOverSoundChannel = audio.play(gameOverSound)
+            timer.performWithDelay(2000, HideIncorrect)
             timer.cancel(countDownTimer) 
         end
         -- *** CALL THE FUNCTION TO ASK A NEW QUESTION
@@ -103,7 +114,7 @@ end
  -- Incorrect sound
  local incorrectSound = audio.loadSound( "Sounds/wrongSound.mp3")
  local incorrectSoundChannel
- ----------------------------------------------------------------------
+ ---------------------------------------------------------------------- 
  -- LOCAL FUNCTIONS
  ----------------------------------------------------------------------
 
@@ -163,6 +174,7 @@ end
 
  local function HideIncorrect()
  	incorrectObject.isVisible = false
+    incorrectObject2.isVisible = false
  	AskQuestion()
  end
 
@@ -183,6 +195,7 @@ end
  		if (userAnswer == correctAnswer) then
  			correctObject.isVisible = true
  			incorrectObject.isVisible = false
+            incorrectObject2.isVisible = false
 
             correctSoundChannel = audio.play(correctSound)
 
@@ -190,6 +203,7 @@ end
 
  		else
  			incorrectObject.isVisible = true
+            incorrectObject2.isVisible = true
  			correctObject.isVisible = false
 
             incorrectSoundChannel = audio.play(incorrectSound)
@@ -225,6 +239,10 @@ incorrectObject = display.newText( "Sorry, that is incorrect", display.contentWi
 incorrectObject:setTextColor(204/255, 0/255, 43/255)
 incorrectObject.isVisible = false
 
+incorrectObject2 = display.newText( "The correct answer is " .. correctAnswer , display.contentWidth/2, display.contentHeight*2.5/3, nil, 60 )
+incorrectObject2:setTextColor(204/255, 0/255, 43/255)
+incorrectObject2.isVisible = false
+
 -- Create numeric field
 numericField = native.newTextField( display.contentWidth/2, display.contentHeight/2, 250,80 )
 numericField.inputType = "number"
@@ -234,16 +252,21 @@ numericField:addEventListener( "userInput", NumericFieldListener )
 
 -- create the lives to display on screen
 heart1 = display.newImageRect("Images/heart.png", 100, 100)
-heart1.x = display.contentWidth * 6.5 / 8
+heart1.x = display.contentWidth * 5.5 / 8
 heart1.y = display.contentHeight * 1 / 7
 
 heart2 = display.newImageRect("Images/heart.png", 100, 100)
-heart2.x = display.contentWidth * 7.5 / 8
+heart2.x = display.contentWidth * 6.5 / 8
 heart2.y = display.contentHeight * 1 / 7
 
 heart3 = display.newImageRect("Images/heart.png", 100, 100)
-heart3.x = display.contentWidth * 5.5 / 8
+heart3.x = display.contentWidth * 7.5 / 8
 heart3.y = display.contentHeight * 1 / 7
+
+gameOver = display.newImageRect("Images/game_over.png", 200, 200)
+gameOver.x = display.contentWidth * 4 / 8
+gameOver.y = display.contentHeight * 5.7 / 7
+gameOver.isVisible = false
 
 clockText = display.newText ( "Time Remaining:", display.contentWidth/4, display.contentHeight/8, nil, 60 )
 clockText:setTextColor(51/255, 255/255, 255/255)
@@ -256,10 +279,6 @@ numberText:setTextColor(51/255, 255/255, 255/255)
 
 numberText = display.newText ( "" .. numberCorrect + 1, display.contentWidth/1.67, display.contentHeight/3, nil, 50 )
 numberText:setTextColor(51/255, 255/255, 255/255)
-
-incorrectObject = display.newText( "The correct answer is " .. correctAnswer , display.contentWidth/2, display.contentHeight*2/3, nil, 60 )
-incorrectObject:setTextColor(204/255, 0/255, 43/255)
-incorrectObject.isVisible = false
 ------------------------------------------------------------------------
 -- FUNCTION CALLS
 -----------------------------------------------------------------------
