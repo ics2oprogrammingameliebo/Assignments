@@ -46,7 +46,7 @@ local gameOver
 local numberText
 ----------------------------
  -- game over sound
- local gameOverSound = audio.loadSound( "Sounds/SpringSoundEffect.mp3")
+ local gameOverSound = audio.loadSound( "Sounds/gameover.mp3")
  local gameOverSoundChannel
 --------------------------------------------------------------------
 -- LOCAL FUNCTION
@@ -108,11 +108,11 @@ end
  -- SOUNDS
  -------------------------------------------------------------------
  -- Correct sound
- local correctSound = audio.loadSound( "Sounds/correctSound.mp3")
+ local correctSound = audio.loadSound( "Sounds/correct.mp3")
  local correctSoundChannel
 
  -- Incorrect sound
- local incorrectSound = audio.loadSound( "Sounds/wrongSound.mp3")
+ local incorrectSound = audio.loadSound( "Sounds/incorrect.mp3")
  local incorrectSoundChannel
  ---------------------------------------------------------------------- 
  -- LOCAL FUNCTIONS
@@ -224,6 +224,10 @@ end
  --------------------------------------------------------------------------
  -- OBJECT CREATION
  --------------------------------------------------------------------------
+gameOver = display.newImageRect("Images/game_over.png", 200, 200)
+gameOver.x = display.contentWidth * 4/ 8
+gameOver.y = display.contentHeight * 5.5 / 7
+gameOver.isVisible = false
 
  -- display a question and set the color
  questionObject = display.newText ( " ", display.contentWidth/3.5, display.contentHeight/2, nil, 60 )
@@ -262,11 +266,6 @@ heart2.y = display.contentHeight * 1 / 7
 heart3 = display.newImageRect("Images/heart.png", 100, 100)
 heart3.x = display.contentWidth * 7.5 / 8
 heart3.y = display.contentHeight * 1 / 7
-
-gameOver = display.newImageRect("Images/game_over.png", 200, 200)
-gameOver.x = display.contentWidth * 4 / 8
-gameOver.y = display.contentHeight * 5.7 / 7
-gameOver.isVisible = false
 
 clockText = display.newText ( "Time Remaining:", display.contentWidth/4, display.contentHeight/8, nil, 60 )
 clockText:setTextColor(51/255, 255/255, 255/255)
