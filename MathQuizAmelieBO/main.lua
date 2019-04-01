@@ -18,17 +18,24 @@ display.setDefault("background", 0/255, 0/255, 51/255)
 
  -- create local variables
  local questionObject
+
  local correctObject
  local incorrectObject
  local incorrectObject2
+
  local NumericTextFields
+
  local randomNumber1
  local randomNumber2
  local randomOperator
+
  local userAnswer
- local correctAnswer
+ local timeRemainingObjec
+ local numberCorrectObject
  
- local numberCorrect = 0
+ local score = 0
+ local totalScore = 5
+ local scoreObject
 -------------------------------------------------------------------
 -- variables for the timers
 local totalSeconds = 11
@@ -42,12 +49,16 @@ local lives = 3
 local heart1
 local heart2
 local heart3
+
 local gameOver
-local numberText
+local win
+
 ----------------------------
  -- game over sound
  local gameOverSound = audio.loadSound( "Sounds/gameover.mp3")
  local gameOverSoundChannel
+
+ -- win sound
 --------------------------------------------------------------------
 -- LOCAL FUNCTION
 ---------------------------------------------------------------------
@@ -60,10 +71,18 @@ local function UpdateTime()
     -- Display the number of seconds left in the clock object
     clockText.text = secondsLeft .. ""
 
+    -- decrement the number of correct
+    score = score + 1
+
+    -- Display the number of correct in the score object
+    scoreObject.text = score .. ""
+
     if (userAnswer == correctAnswer) then
         -- reset the seconds left and dont lose a life
         secondsLeft = totalSeconds
         lives = lives
+        -- track the score
+        score = totalScore
 
     elseif (secondsLeft == 0) then
        -- reset the number of seconds left
@@ -215,12 +234,6 @@ end
 
  	end
  end
- ------------------------------------------------------------------------
- -- track the number of correct answers
- if (userAnswer == correctAnswer) then
-    userAnswer = correctAnswer
-    correctAnswer = numberCorrect + 1
-end
  --------------------------------------------------------------------------
  -- OBJECT CREATION
  --------------------------------------------------------------------------
@@ -243,7 +256,7 @@ incorrectObject = display.newText( "Sorry, that is incorrect", display.contentWi
 incorrectObject:setTextColor(204/255, 0/255, 43/255)
 incorrectObject.isVisible = false
 
-incorrectObject2 = display.newText( "The correct answer is " .. correctAnswer , display.contentWidth/2, display.contentHeight*2.5/3, nil, 60 )
+incorrectObject2 = display.newText( "The correct answer is " .. score , display.contentWidth/2, display.contentHeight*2.5/3, nil, 60 )
 incorrectObject2:setTextColor(204/255, 0/255, 43/255)
 incorrectObject2.isVisible = false
 
@@ -267,17 +280,26 @@ heart3 = display.newImageRect("Images/heart.png", 100, 100)
 heart3.x = display.contentWidth * 7.5 / 8
 heart3.y = display.contentHeight * 1 / 7
 
-clockText = display.newText ( "Time Remaining:", display.contentWidth/4, display.contentHeight/8, nil, 60 )
+win = display.newImageRect("Images/win.png", 100, 100)
+win.x = display.contentWidth * 7.5 / 8
+win.y = display.contentHeight * 1 / 7
+win.isVisible = false
+
+-- create the time remaining text object and make it visible
+timeRemainingObject = display.newText( "Time Remaining:", display.contentWidth/3.5, display.contentHeight*0.4/3, nil, 60 )
+timeRemainingObject:setTextColor(51/255, 255/255, 255/255)
+timeRemainingObject.isVisible = true
+
+clockText = display.newText ( "" .. secondsLeft, display.contentWidth/1.8, display.contentHeight/7.5, nil, 60 )
 clockText:setTextColor(51/255, 255/255, 255/255)
 
-clockText = display.newText ( "" .. secondsLeft, display.contentWidth/2, display.contentHeight/8, nil, 60 )
-clockText:setTextColor(51/255, 255/255, 255/255)
+-- create the time remaining text object and make it visible
+numberCorrectObject = display.newText( "Number Correct:", display.contentWidth/3, display.contentHeight*1/3, nil, 60 )
+numberCorrectObject:setTextColor(51/255, 255/255, 255/255)
+numberCorrectObject.isVisible = true
 
-numberText = display.newText ( "Number Correct:", display.contentWidth/2.5, display.contentHeight/3, nil, 50 )
-numberText:setTextColor(51/255, 255/255, 255/255)
-
-numberText = display.newText ( "" .. numberCorrect + 1, display.contentWidth/1.67, display.contentHeight/3, nil, 50 )
-numberText:setTextColor(51/255, 255/255, 255/255)
+scoreObject = display.newText ( "" .. score, display.contentWidth/1.7, display.contentHeight/3, nil, 50 )
+scoreObject:setTextColor(51/255, 255/255, 255/255)
 ------------------------------------------------------------------------
 -- FUNCTION CALLS
 -----------------------------------------------------------------------
