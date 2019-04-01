@@ -27,6 +27,10 @@ display.setDefault("background", 0/255, 0/255, 51/255)
 
  local randomNumber1
  local randomNumber2
+ local randomNumber3
+ local randomNumber4
+ local randomNumber5
+ local randomNumber6
  local randomOperator
 
  local userAnswer
@@ -35,7 +39,7 @@ display.setDefault("background", 0/255, 0/255, 51/255)
  
  local score = 0
  local totalScore = 5
- local scoreObject
+ local scoreObject 
 -------------------------------------------------------------------
 -- variables for the timers
 local totalSeconds = 11
@@ -59,6 +63,8 @@ local win
  local gameOverSoundChannel
 
  -- win sound
+ local winSound = audio.loadSound( "Sounds?winSound.mp3")
+ local winSoundChannel
 --------------------------------------------------------------------
 -- LOCAL FUNCTION
 ---------------------------------------------------------------------
@@ -71,15 +77,9 @@ local function UpdateTime()
     -- Display the number of seconds left in the clock object
     clockText.text = secondsLeft .. ""
 
-    -- Display the number of correct in the score object
-    scoreObject.text = score .. ""
-
     if (userAnswer == correctAnswer) then
         -- reset the seconds left and dont lose a life
         secondsLeft = totalSeconds
-        
-        -- track the score
-        score = totalScore
 
     elseif (secondsLeft == 0) then
        -- reset the number of seconds left
@@ -90,7 +90,7 @@ local function UpdateTime()
        -- reset the number of seconds left
        correctAnswer = totalSeconds
        lives = lives - 1
-       end
+    end
 
 
         -- *** IF THERE ARE NO LIVES LEFT, PLAY A LOSE SOUND,
@@ -109,10 +109,12 @@ local function UpdateTime()
             gameOverSoundChannel = audio.play(gameOverSound)
             timer.performWithDelay(2000, HideIncorrect)
             timer.cancel(countDownTimer) 
+
+        elseif (score == totalScore) then
+            win.isVisible = true
         end
         -- *** CALL THE FUNCTION TO ASK A NEW QUESTION
     end
-
 -- funtion that calls the timer
 local function StartTimer()
 
@@ -120,6 +122,22 @@ local function StartTimer()
    countDownTimer = timer.performWithDelay( 1000, UpdateTime, 0)
 end
 
+local function TrackScore()
+    -- decrement the number of seconds
+    score = score + 1
+
+    -- Display the number of seconds left in the clock object
+    scoreObject.text = score .. ""
+
+    if (userAnswer == correctAnswer) then
+     score = totalScore
+
+     elseif (score == 5) then
+     -- set the number of corrects
+     score = totalScore
+      lives = lives
+    end 
+end
  -------------------------------------------------------------------
  -- SOUNDS
  -------------------------------------------------------------------
@@ -217,9 +235,6 @@ end
 
  			timer.performWithDelay(2000, HideCorrect)
 
-            -- decrement the number of correct
-            score = score + 1
-
  		else
  			incorrectObject.isVisible = true
             incorrectObject2.isVisible = true
@@ -231,9 +246,8 @@ end
  		end
         -- clear text field
  		event.target.text = " "
-
- 	end
- end
+   end
+end
  --------------------------------------------------------------------------
  -- OBJECT CREATION
  --------------------------------------------------------------------------
@@ -256,7 +270,7 @@ incorrectObject = display.newText( "Sorry, that is incorrect", display.contentWi
 incorrectObject:setTextColor(204/255, 0/255, 43/255)
 incorrectObject.isVisible = false
 
-incorrectObject2 = display.newText( "The correct answer is " .. score , display.contentWidth/2, display.contentHeight*2.5/3, nil, 60 )
+incorrectObject2 = display.newText( "The correct answer is ", display.contentWidth/2, display.contentHeight*2.5/3, nil, 60 )
 incorrectObject2:setTextColor(204/255, 0/255, 43/255)
 incorrectObject2.isVisible = false
 
@@ -280,11 +294,6 @@ heart3 = display.newImageRect("Images/heart.png", 100, 100)
 heart3.x = display.contentWidth * 7.5 / 8
 heart3.y = display.contentHeight * 1 / 7
 
-win = display.newImageRect("Images/win.png", 100, 100)
-win.x = display.contentWidth * 7.5 / 8
-win.y = display.contentHeight * 1 / 7
-win.isVisible = false
-
 -- create the time remaining text object and make it visible
 timeRemainingObject = display.newText( "Time Remaining:", display.contentWidth/3.5, display.contentHeight*0.4/3, nil, 60 )
 timeRemainingObject:setTextColor(51/255, 255/255, 255/255)
@@ -300,6 +309,11 @@ numberCorrectObject.isVisible = true
 
 scoreObject = display.newText ( "" .. score, display.contentWidth/1.7, display.contentHeight/3, nil, 50 )
 scoreObject:setTextColor(51/255, 255/255, 255/255)
+
+win = display.newImageRect("Images/win.png", 800, 800)
+win.x = display.contentWidth * 4 / 8
+win.y = display.contentHeight * 3.5 / 7
+win.isVisible = false
 ------------------------------------------------------------------------
 -- FUNCTION CALLS
 -----------------------------------------------------------------------
