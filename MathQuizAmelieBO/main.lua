@@ -71,16 +71,13 @@ local function UpdateTime()
     -- Display the number of seconds left in the clock object
     clockText.text = secondsLeft .. ""
 
-    -- decrement the number of correct
-    score = score + 1
-
     -- Display the number of correct in the score object
     scoreObject.text = score .. ""
 
     if (userAnswer == correctAnswer) then
         -- reset the seconds left and dont lose a life
         secondsLeft = totalSeconds
-        lives = lives
+        
         -- track the score
         score = totalScore
 
@@ -219,6 +216,9 @@ end
             correctSoundChannel = audio.play(correctSound)
 
  			timer.performWithDelay(2000, HideCorrect)
+
+            -- decrement the number of correct
+            score = score + 1
 
  		else
  			incorrectObject.isVisible = true
