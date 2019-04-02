@@ -109,9 +109,6 @@ local function UpdateTime()
             gameOverSoundChannel = audio.play(gameOverSound)
             timer.performWithDelay(2000, HideIncorrect)
             timer.cancel(countDownTimer) 
-
-        elseif (score == totalScore) then
-            win.isVisible = true
         end
         -- *** CALL THE FUNCTION TO ASK A NEW QUESTION
     end
@@ -131,11 +128,12 @@ local function TrackScore()
 
     if (userAnswer == correctAnswer) then
      score = totalScore
+     score = score + 1
 
      elseif (score == 5) then
      -- set the number of corrects
      score = totalScore
-      lives = lives
+    win.isVisible = true
     end 
 end
  -------------------------------------------------------------------
@@ -320,4 +318,7 @@ win.isVisible = false
 
 -- call the function to ask the question
 AskQuestion()
+-- call the function to start timer
 StartTimer()
+-- call the function to track score
+TrackScore()
