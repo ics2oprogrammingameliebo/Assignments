@@ -118,24 +118,6 @@ local function StartTimer()
     -- create a countdown timer that looops infinitely
    countDownTimer = timer.performWithDelay( 1000, UpdateTime, 0)
 end
-
-local function TrackScore()
-    -- decrement the number of seconds
-    score = score + 1
-
-    -- Display the number of seconds left in the clock object
-    scoreObject.text = score .. ""
-
-    if (userAnswer == correctAnswer) then
-     score = totalScore
-     score = score + 1
-
-     elseif (score == 5) then
-     -- set the number of corrects
-     score = totalScore
-    win.isVisible = true
-    end 
-end
  -------------------------------------------------------------------
  -- SOUNDS
  -------------------------------------------------------------------
@@ -215,6 +197,12 @@ end
  	-- User begins editing "numericField"
  	if ( event.phase == "began ") then
 
+    -- decrement the number of seconds
+    score = score + 1
+
+       -- Display the number of seconds left in the clock object
+    scoreObject.text = score .. ""
+
  		-- clear text field
  		event.target.text = " "
 
@@ -228,6 +216,8 @@ end
  			correctObject.isVisible = true
  			incorrectObject.isVisible = false
             incorrectObject2.isVisible = false
+                 score = totalScore
+     score = score + 1
 
             correctSoundChannel = audio.play(correctSound)
 
@@ -237,6 +227,10 @@ end
  			incorrectObject.isVisible = true
             incorrectObject2.isVisible = true
  			correctObject.isVisible = false
+
+             -- set the number of corrects
+             score = totalScore
+             win.isVisible = true
 
             incorrectSoundChannel = audio.play(incorrectSound)
 
@@ -320,5 +314,3 @@ win.isVisible = false
 AskQuestion()
 -- call the function to start timer
 StartTimer()
--- call the function to track score
-TrackScore()
