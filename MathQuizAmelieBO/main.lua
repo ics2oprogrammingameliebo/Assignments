@@ -194,14 +194,8 @@ end
 
  local function NumericFieldListener( event )
 
- 	-- User begins editing "numericField"
+    	-- User begins editing "numericField"
  	if ( event.phase == "began ") then
-
-    -- decrement the number of seconds
-    score = score + 1
-
-       -- Display the number of seconds left in the clock object
-    scoreObject.text = score .. ""
 
  		-- clear text field
  		event.target.text = " "
@@ -216,10 +210,7 @@ end
  			correctObject.isVisible = true
  			incorrectObject.isVisible = false
             incorrectObject2.isVisible = false
-                 score = totalScore
-     score = score + 1
-
-            correctSoundChannel = audio.play(correctSound)
+            score = score + 1
 
  			timer.performWithDelay(2000, HideCorrect)
 
@@ -228,10 +219,6 @@ end
             incorrectObject2.isVisible = true
  			correctObject.isVisible = false
 
-             -- set the number of corrects
-             score = totalScore
-             win.isVisible = true
-
             incorrectSoundChannel = audio.play(incorrectSound)
 
  			timer.performWithDelay(2000, HideIncorrect)
@@ -239,6 +226,14 @@ end
         -- clear text field
  		event.target.text = " "
    end
+end
+
+if (Score == 5) then
+-- set the number of corrects
+score = totalScore
+win.isVisible = true
+
+correctSoundChannel = audio.play(correctSound)
 end
  --------------------------------------------------------------------------
  -- OBJECT CREATION
