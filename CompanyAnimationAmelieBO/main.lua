@@ -14,6 +14,7 @@ display.setDefault("background", 1, 1, 1)
 -- character/ logo images with width and height
 local sky = display.newImageRect("Images/backgroundAmelieBO@2x.png", 750, 750)
 local stars = display.newImageRect("Images/StarsAmelieBO@2x.png", 750, 750)
+local stars2 = display.newImageRect("Images/StarsAmelieBO@2x.png", 750, 750)
 local earth = display.newImageRect("Images/earthAmelieBO@2x.png", 750, 750)
 local rocketShip = display.newImageRect("Images/RocketShipAmelie@2x.png", 300, 205)
 local fire = display.newImageRect("Images/fireAmelie@2x.png", 200, 70)
@@ -27,6 +28,9 @@ sky.y = 380
 
 stars.x = 500
 stars.y = 380
+
+stars2.x = 500
+stars2.y = 380
 
 earth.x = 500
 earth.y = 380
@@ -85,6 +89,9 @@ local function FadeIn(event)
 -- make the images fade in
 stars.alpha = stars.alpha + 0.01
 fire.alpha = fire.alpha + 0.01
+
+-- scale the stars2 so that they grow
+stars2:scale( 1.03, 1.03)
 end
 
 -- FadeIn will be called 
