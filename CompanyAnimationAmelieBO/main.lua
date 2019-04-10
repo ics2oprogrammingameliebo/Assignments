@@ -6,9 +6,6 @@
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- global variables
-scrollSpeed = 8
-
 -- set background colour
 display.setDefault("background", 1, 1, 1)
 --------------------------------------------------------------------------------
@@ -34,11 +31,15 @@ stars.y = 380
 earth.x = 500
 earth.y = 380
 
-rocketShip.x = 400
+rocketShip.x = 1400
 rocketShip.y = 380
 
-fire.x = 620
+transition.to(rocketShip, {x=400, y=380, time=1000})
+
+fire.x = 1620
 fire.y = 400
+
+transition.to(fire, {x=620, y=400, time=1000})
 --------------------------------------------------------------------------------
 -- SOUNDS
 --------------------------------------------------------------------------------
@@ -63,66 +64,34 @@ timer.performWithDelay(200, HideCorrect)
 -- set the earth to be transparent
 sky.alpha = 0
 earth.alpha = 0
+stars.alpha = 0
+fire.alpha = 0
 
-local function FadeIn(event)
+local function FadeInBkg(event)
 
+-- make the images fade in
 sky.alpha = sky.alpha + 0.01
 earth.alpha = earth.alpha + 0.01
 end
 
 -- FadeIn will be called 
-Runtime:addEventListener("enterFrame", FadeIn)
+Runtime:addEventListener("enterFrame", FadeInBkg)
 
--- Function: fade in FadeInStars 
--- Input: this function accepts an event listener
--- Output: none
--- Description: This function adds the visibility in the star image by making 
---it fade in 
 
--- set the stars to be transparent
-stars.alpha = 0
 
-local function FadeInStars(event)
+local function FadeIn(event)
 
+-- make the images fade in
 stars.alpha = stars.alpha + 0.01
+fire.alpha = fire.alpha + 0.01
 end
 
 -- FadeIn will be called 
-Runtime:addEventListener("enterFrame", FadeInStars)
+Runtime:addEventListener("enterFrame", FadeIn)
 
--- Function: Move MoveRocket 
--- Input: this function accepts an event listener
--- Output: none
--- Description: This function adds the scroll speed to the x-value of the rocket
 
-local function MoveRocket(event)
-	-- add the scroll speed to the x-value of the rocket
-	rocketShip.x = rocketShip.x - scrollSpeed
-end
 
--- MoveRocket will be called over and over again
-Runtime:addEventListener("enterFrame", MoveRocket)
 
-barkSoundChannel = audio.play(barkSound)
 
-timer.performWithDelay(8000)
-
--- set the stars to be transparent
-fire.alpha = 0
-
--- Function: Move MveFire 
--- Input: this function accepts an event listener
--- Output: none
--- Description: This function adds the scroll speed to the x-value of the fire
-
-local function MoveFire(event)
-	-- add the scroll speed to the x-value of the rocket
-	fire.x = fire.x - scrollSpeed
-	-- change the transparency everytime it moves
-	fire.alpha = fire.alpha + 0.01
-end
-
--- MoveRocket will be called over and over again
-Runtime:addEventListener("enterFrame", MoveFire)
 
 
