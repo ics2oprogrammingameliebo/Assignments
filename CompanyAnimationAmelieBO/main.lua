@@ -39,7 +39,25 @@ rocketShip.y = 380
 
 fire.x = 620
 fire.y = 400
+--------------------------------------------------------------------------------
+-- SOUNDS
+--------------------------------------------------------------------------------
 
+-- create sound variables
+local rocketSounds = audio.loadSound ( "Sounds/rocketSound.mp3" )
+local rocketSoundChannel
+
+rocketSoundChannel = audio.play(rocketSound)
+
+timer.performWithDelay(200, HideCorrect)
+
+
+local barkSound = audio.loadSound ( "Sounds/bark.mp3" )
+local barkSoundChannel
+
+barkSoundChannel = audio.play(barkSound)
+
+timer.performWithDelay(8000, HideCorrect)
 --------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------
@@ -91,6 +109,10 @@ end
 
 -- MoveRocket will be called over and over again
 Runtime:addEventListener("enterFrame", MoveRocket)
+
+barkSoundChannel = audio.play(barkSound)
+
+timer.performWithDelay(8000)
 
 -- set the stars to be transparent
 fire.alpha = 0
