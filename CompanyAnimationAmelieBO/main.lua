@@ -45,14 +45,16 @@ transition.to(fire, {x=620, y=400, time=1000})
 --------------------------------------------------------------------------------
 
 -- create sound variables
-local rocketSounds = audio.loadSound ( "Sounds/rocketSound.mp3" )
+local rocketSound = audio.loadSound ( "Sounds/rocketSound.mp3" )
 local rocketSoundChannel
 
 rocketSoundChannel = audio.play(rocketSound)
 
-timer.performWithDelay(200, HideCorrect)
+local barkSound = audio.loadSound ( "Sounds/bark.mp3" )
+local barkSoundChannel
 
----------------------------------------
+barkSoundChannel = audio.play(barkSound)
+-------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------
 
@@ -78,7 +80,6 @@ end
 Runtime:addEventListener("enterFrame", FadeInBkg)
 
 
-
 local function FadeIn(event)
 
 -- make the images fade in
@@ -88,10 +89,3 @@ end
 
 -- FadeIn will be called 
 Runtime:addEventListener("enterFrame", FadeIn)
-
-
-
-
-
-
-
