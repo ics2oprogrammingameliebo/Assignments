@@ -58,6 +58,7 @@ local barkSound = audio.loadSound ( "Sounds/bark.mp3" )
 local barkSoundChannel
 
 barkSoundChannel = audio.play(barkSound)
+
 -------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------
