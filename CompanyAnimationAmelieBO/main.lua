@@ -19,6 +19,11 @@ local earth = display.newImageRect("Images/earthAmelieBO@2x.png", 750, 750)
 local rocketShip = display.newImageRect("Images/RocketShipAmelie@2x.png", 300, 205)
 local fire = display.newImageRect("Images/fireAmelie@2x.png", 200, 70)
 
+-- set the earth to be transparent
+sky.alpha = 0
+earth.alpha = 0
+stars.alpha = 0
+fire.alpha = 0
 --------------------------------------------------------------------------------
 -- X AND Y POSITIONS
 --------------------------------------------------------------------------------
@@ -68,11 +73,7 @@ barkSoundChannel = audio.play(barkSound)
 -- Output: none
 -- Description: This function adds the visibility in the image by making it fade in.
 
--- set the earth to be transparent
-sky.alpha = 0
-earth.alpha = 0
-stars.alpha = 0
-fire.alpha = 0
+
 
 local function FadeInBkg(event)
 
@@ -80,9 +81,6 @@ local function FadeInBkg(event)
 sky.alpha = sky.alpha + 0.01
 earth.alpha = earth.alpha + 0.01
 end
-
--- FadeIn will be called 
-Runtime:addEventListener("enterFrame", FadeInBkg)
 
 
 local function FadeIn(event)
@@ -94,6 +92,12 @@ fire.alpha = fire.alpha + 0.01
 -- scale the stars2 so that they grow
 stars2:scale( 1.03, 1.03)
 end
+
+-------------------------------------------------------------------------------
+-- RUNTIME LISTENERS
+--------------------------------------------------------------------------------
+-- FadeIn will be called 
+Runtime:addEventListener("enterFrame", FadeInBkg)
 
 -- FadeIn will be called 
 Runtime:addEventListener("enterFrame", FadeIn)
