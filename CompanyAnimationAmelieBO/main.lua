@@ -73,8 +73,6 @@ barkSoundChannel = audio.play(barkSound)
 -- Output: none
 -- Description: This function adds the visibility in the image by making it fade in.
 
-
-
 local function FadeInBkg(event)
 
 -- make the images fade in
